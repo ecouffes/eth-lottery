@@ -23,6 +23,7 @@ const web3 = new Web3(provider);
       // gas: '1000000'
     });
 
+  console.log('Contract ABI is', interface);
   console.log('Contract deployed to', lottery.options.address);
 })();
 
