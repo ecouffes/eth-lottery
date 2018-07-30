@@ -13,18 +13,21 @@ const web3 = new Web3(provider);
 
 (async () => {
   const accounts = await web3.eth.getAccounts();
+  const deployer = accounts[0];
 
-  const lottery = await new web3.eth.Contract(JSON.parse(interface))
+  console.log('Attempting to deploy from account', deployer);
+
+  const instance = await new web3.eth.Contract(JSON.parse(interface))
     .deploy({
       data: '0x' + bytecode
     })
     .send({
-      from: accounts[0],
+      from: deployer,
       // gas: '1000000'
     });
 
   console.log('Contract ABI is', interface);
-  console.log('Contract deployed to', lottery.options.address);
+  console.log('Contract deployed to', instance.options.address);
 })();
 
 

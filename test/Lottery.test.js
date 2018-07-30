@@ -43,8 +43,8 @@ describe('Lottery Contract', () => {
       from: accounts[0]
     });
 
-    assert.equal(accounts[0], players[0]);
-    assert.equal(1, players.length);
+    assert.equal(players[0], accounts[0]);
+    assert.equal(players.length, 1);
   });
 
 
@@ -68,10 +68,10 @@ describe('Lottery Contract', () => {
       from: accounts[0]
     });
 
-    assert.equal(accounts[0], players[0]);
-    assert.equal(accounts[1], players[1]);
-    assert.equal(accounts[2], players[2]);
-    assert.equal(3, players.length);
+    assert.equal(players[0], accounts[0]);
+    assert.equal(players[1], accounts[1]);
+    assert.equal(players[2], accounts[2]);
+    assert.equal(players.length, 3);
   });
 
   it('requires a minimum amount of ether to enter', async () => {
@@ -112,7 +112,7 @@ describe('Lottery Contract', () => {
     const finalBalance = await web3.eth.getBalance(accounts[1]);
     const diffBalance = finalBalance - initialBalance;
 
-    assert(lotteryBet, diffBalance);
+    assert.ok(lotteryBet, diffBalance);
   });
 
 });
