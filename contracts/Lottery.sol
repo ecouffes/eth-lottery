@@ -2,17 +2,17 @@ pragma solidity ^0.4.22;
 
 contract Lottery {
 
-    // state variable (storage variable, instance variable)
-    address public manager;
+    // state variables
+    address public owner;
     address[] public players;
 
     constructor() public {
-        manager = msg.sender;
+        owner = msg.sender;
     }
 
     // function modifier
     modifier restricted() {
-        require(msg.sender == manager);
+        require(msg.sender == owner);
         _;
     }
 
