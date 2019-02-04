@@ -23,8 +23,6 @@ contract Lottery {
 
     // pseudo-random generator
     function random() private view returns (uint) {
-        // keccak256(...) returns (bytes32)
-        // alias of sha3(...)
         return uint(keccak256(abi.encodePacked(block.difficulty, block.timestamp, players)));
     }
 
