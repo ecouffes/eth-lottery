@@ -11,7 +11,7 @@ contract Lottery {
     }
 
     // function modifier
-    modifier restricted() {
+    modifier onlyOwner() {
         require(msg.sender == owner);
         _;
     }
@@ -26,7 +26,7 @@ contract Lottery {
         return uint(keccak256(abi.encodePacked(block.difficulty, block.timestamp, players)));
     }
 
-    function pickWinner() public restricted {
+    function pickWinner() public onlyOwner {
         // 乱数 % 数値 では、必ず数値の範囲内で乱数を返す
         uint index = random() % players.length;
         players[index].transfer(address(this).balance);
